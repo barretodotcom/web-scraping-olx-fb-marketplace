@@ -1,0 +1,51 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SendPageController = void 0;
+
+var _ScrapFacebookService = require("../services/ScrapFacebookService");
+
+var _ScrapOlxService = require("../services/ScrapOlxService");
+
+class SendPageController {
+  async scrapFacebook(request, response) {
+    const scrapFacebook = new _ScrapFacebookService.ScrapFacebookService();
+    const {
+      product,
+      minPrice,
+      maxPrice,
+      daysSinceListed,
+      pages
+    } = request.body;
+
+    try {
+      const scrappedPage = await scrapFacebook.execute(product, minPrice, maxPrice, daysSinceListed);
+      return response.json(scrappedPage);
+    } catch {
+      throw new Error();
+    }
+  }
+
+  async scrapOlx(request, response) {
+    const scrapOlx = new _ScrapOlxService.ScrapOlxService();
+    const {
+      product,
+      minPrice,
+      maxPrice,
+      daysSinceListed,
+      pages
+    } = request.body;
+
+    try {
+      const scrappedPage = await scrapOlx.execute(product, minPrice, maxPrice, daysSinceListed, pages);
+      return response.json(scrappedPage);
+    } catch {
+      throw new Error();
+    }
+  }
+
+}
+
+exports.SendPageController = SendPageController;
