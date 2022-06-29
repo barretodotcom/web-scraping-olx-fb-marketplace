@@ -37,6 +37,7 @@ export class ScrapOlxService {
             cheerioFunction = cheerio.load(pagesUrl);
 
             cheerioFunction(eachProductLink).each((i, lnk) => {
+                console.log(links)
                 links.push(cheerioFunction(lnk).attr("href"));
             })
 
@@ -60,16 +61,13 @@ export class ScrapOlxService {
 
                 productContact = JSON.parse(cheerioProduct("#initial-data").attr("data-json")).ad.body.split(" ").filter(element => {
                     if (element.includes("98") || element.includes("88") || element.includes("99")) {
-                        console.log(element)
-                        return element
+                        return element.replace("<br>", " ").replace("<br>", " ").replace("<br>", " ");
                     }
-                })
+                }).toString()
 
             }
 
             products.push([productTitle, productPrice, productContact, link]);
-
-            counter++
         })
 
         for (var i = 0; i < links.length; i++) {
