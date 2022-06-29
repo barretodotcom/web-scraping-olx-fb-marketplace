@@ -10,13 +10,10 @@ export class SendPageController {
         const scrapFacebook = new ScrapFacebookService();
 
         const { product, minPrice, maxPrice, daysSinceListed, pages } = request.body
-        try {
-            const scrappedPage = await scrapFacebook.execute(product, minPrice, maxPrice, daysSinceListed);
 
-            return response.json(scrappedPage);
-        } catch {
-            throw new Error();
-        }
+        const scrappedPage = await scrapFacebook.execute(product, minPrice, maxPrice, daysSinceListed);
+
+        return response.json(scrappedPage);
     }
 
     public async scrapOlx(request: Request, response: Response): Promise<Response> {

@@ -19,13 +19,8 @@ class SendPageController {
       daysSinceListed,
       pages
     } = request.body;
-
-    try {
-      const scrappedPage = await scrapFacebook.execute(product, minPrice, maxPrice, daysSinceListed);
-      return response.json(scrappedPage);
-    } catch {
-      throw new Error();
-    }
+    const scrappedPage = await scrapFacebook.execute(product, minPrice, maxPrice, daysSinceListed);
+    return response.json(scrappedPage);
   }
 
   async scrapOlx(request, response) {
