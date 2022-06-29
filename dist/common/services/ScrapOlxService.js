@@ -63,11 +63,6 @@ class ScrapOlxService {
       let numberIsLocked = html.includes("ver numero") || html.includes("ver número");
 
       if (numberIsLocked) {
-        console.log("-----start------");
-        console.log(cheerioProduct(unlockNumber).text());
-        console.log(cheerioProduct(phoneNumberHTML).text());
-        console.log(link);
-        console.log("----end------");
         productContact = JSON.parse(cheerioProduct("#initial-data").attr("data-json")).ad.body.split(" ").filter(element => {
           if (element.includes("98") || element.includes("88") || element.includes("99")) {
             return element;
