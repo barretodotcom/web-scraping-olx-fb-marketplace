@@ -12,7 +12,8 @@ export class ScrapOlxService {
             maxConcurrency: 25,
             puppeteerOptions: {
                 headless: true,
-                args: ['--no-sandbox']
+                args: ['--no-sandbox'],
+                timeout: 0
             }
         })
 
