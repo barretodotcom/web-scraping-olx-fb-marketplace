@@ -34,16 +34,10 @@ class SendPageController {
       product,
       minPrice,
       maxPrice,
-      daysSinceListed,
       pages
     } = request.body;
-
-    try {
-      const scrappedPage = await scrapOlx.execute(product, minPrice, maxPrice, daysSinceListed, pages);
-      return response.json(scrappedPage);
-    } catch {
-      throw new Error();
-    }
+    const scrappedPage = await scrapOlx.execute(product, minPrice, maxPrice, pages);
+    return response.json(scrappedPage);
   }
 
 }

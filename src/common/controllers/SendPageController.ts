@@ -23,13 +23,10 @@ export class SendPageController {
 
         const scrapOlx = new ScrapOlxService();
 
-        const { product, minPrice, maxPrice, daysSinceListed, pages } = request.body;
-        try {
-            const scrappedPage = await scrapOlx.execute(product, minPrice, maxPrice, daysSinceListed, pages);
+        const { product, minPrice, maxPrice, pages } = request.body;
 
-            return response.json(scrappedPage);
-        } catch {
-            throw new Error();
-        }
+        const scrappedPage = await scrapOlx.execute(product, minPrice, maxPrice, pages);
+
+        return response.json(scrappedPage);
     }
 }

@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export class ScrapOlxService {
 
-    public async execute(product: string, minPrice: string, maxPrice: string, daysSinceListed: string, pages: string): Promise<any[]> {
+    public async execute(product: string, minPrice: string, maxPrice: string, pages: string): Promise<any[]> {
 
         const cluster = await Cluster.launch({
             concurrency: Cluster.CONCURRENCY_PAGE,

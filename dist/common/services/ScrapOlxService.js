@@ -14,7 +14,7 @@ var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class ScrapOlxService {
-  async execute(product, minPrice, maxPrice, daysSinceListed, pages) {
+  async execute(product, minPrice, maxPrice, pages) {
     const cluster = await _puppeteerCluster.Cluster.launch({
       concurrency: _puppeteerCluster.Cluster.CONCURRENCY_PAGE,
       maxConcurrency: 100,
