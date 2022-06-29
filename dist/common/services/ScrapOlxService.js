@@ -19,7 +19,8 @@ class ScrapOlxService {
       concurrency: _puppeteerCluster.Cluster.CONCURRENCY_PAGE,
       maxConcurrency: 25,
       puppeteerOptions: {
-        headless: true
+        headless: true,
+        args: ['--no-sandbox']
       }
     });
     let url = "https://ce.olx.com.br/autos-e-pecas/motos?o=PAGE_NUMBER&pe=MAX_PRICE&ps=MIN_PRICE&q=PRODUCT_TEMPLATE".replace("PRODUCT_TEMPLATE", product).replace("MIN_PRICE", minPrice).replace("MAX_PRICE", maxPrice).replace(/( )/gm, "%20").replace("PAGE_NUMBER", "1");

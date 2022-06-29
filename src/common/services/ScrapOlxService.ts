@@ -11,7 +11,8 @@ export class ScrapOlxService {
             concurrency: Cluster.CONCURRENCY_PAGE,
             maxConcurrency: 25,
             puppeteerOptions: {
-                headless: true
+                headless: true,
+                args: ['--no-sandbox']
             }
         })
 
