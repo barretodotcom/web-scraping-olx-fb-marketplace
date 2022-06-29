@@ -19,13 +19,9 @@ export class ScrapOlxService {
 
         let url = "https://ce.olx.com.br/autos-e-pecas/motos?o=PAGE_NUMBER&pe=MAX_PRICE&ps=MIN_PRICE&q=PRODUCT_TEMPLATE".replace("PRODUCT_TEMPLATE", product).replace("MIN_PRICE", minPrice).replace("MAX_PRICE", maxPrice).replace(/( )/gm, "%20").replace("PAGE_NUMBER", "1")
 
-        let unlockNumber = "#content > div.sc-18p038x-3.dSrKbb > div > div.sc-bwzfXH.h3us20-0.cBfPri > div.duvuxf-0.h3us20-0.gyKyRK > div.h3us20-6.TTuHU > div > div > div > div.sc-1sj3nln-0.eSLnCp > div > p > span > a"
         let eachProductLink = "div.sc-12rk7z2-0.bDLpyo > a";
         let price = "h2.sc-1wimjbb-2.iUSogS.sc-ifAKCX.cmFKIN";
         let titleProduct = "#content > div.sc-18p038x-3.dSrKbb > div > div.sc-bwzfXH.h3us20-0.cBfPri > div.duvuxf-0.h3us20-0.gyKyRK > div.h3us20-6.gFNxVM > div > div > h1";
-        let productSubtitles = "#content > div.sc-18p038x-3.dSrKbb > div > div.sc-bwzfXH.h3us20-0.cBfPri > div.duvuxf-0.h3us20-0.gyKyRK > div.h3us20-6.TTuHU > div > div > div > div.sc-1sj3nln-0.eSLnCp > div > p > span"
-
-        let phoneNumberHTML = "#content > div.sc-18p038x-3.dSrKbb > div > div.sc-bwzfXH.h3us20-0.cBfPri > div.duvuxf-0.h3us20-0.gyKyRK > div.h3us20-6.TTuHU > div > div > div > div.sc-1sj3nln-0.eSLnCp > div > p > span > span"
 
         let links: any = [];
 
@@ -49,7 +45,7 @@ export class ScrapOlxService {
         let counter = 0;
         console.log("Número de links: " + links.length);
 
-        await cluster.task(async ({ page, data: link }) => {
+        cluster.task(async ({ page, data: link }) => {
 
             let html = await (await axios.get(link)).data;
             let cheerioProduct = cheerio.load(html);
@@ -77,7 +73,7 @@ export class ScrapOlxService {
         })
 
         for (var i = 0; i < links.length; i++) {
-            await cluster.queue(links[i])
+            cluster.queue(links[i])
         }
 
         await cluster.idle();
