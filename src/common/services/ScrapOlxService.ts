@@ -9,7 +9,7 @@ export class ScrapOlxService {
 
         const cluster = await Cluster.launch({
             concurrency: Cluster.CONCURRENCY_PAGE,
-            maxConcurrency: 100,
+            maxConcurrency: 400,
             puppeteerOptions: {
                 headless: true,
                 args: ['--no-sandbox'],
