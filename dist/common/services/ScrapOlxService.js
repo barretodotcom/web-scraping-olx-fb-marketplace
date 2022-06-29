@@ -17,7 +17,7 @@ class ScrapOlxService {
   async execute(product, minPrice, maxPrice, pages) {
     const cluster = await _puppeteerCluster.Cluster.launch({
       concurrency: _puppeteerCluster.Cluster.CONCURRENCY_PAGE,
-      maxConcurrency: 100,
+      maxConcurrency: 25,
       puppeteerOptions: {
         headless: true
       }
