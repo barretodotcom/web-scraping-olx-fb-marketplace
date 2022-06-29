@@ -43,7 +43,7 @@ export class ScrapOlxService {
             })
 
         }
-
+        console.log(links)
         let products: any[] = [];
         let counter = 0;
         console.log("Número de links: " + links.length);

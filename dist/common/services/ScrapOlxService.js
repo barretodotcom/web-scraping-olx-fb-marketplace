@@ -43,6 +43,7 @@ class ScrapOlxService {
       });
     }
 
+    console.log(links);
     let products = [];
     let counter = 0;
     console.log("Número de links: " + links.length);
