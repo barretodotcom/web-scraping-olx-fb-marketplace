@@ -6,5 +6,7 @@ const scrapController = new SendPageController();
 
 router.post("/facebook", scrapController.scrapFacebook);
 router.post("/olx", scrapController.scrapOlx);
-
+router.get("/jair", (req, res) => {
+    return res.json("oi")
+})
 export default router;

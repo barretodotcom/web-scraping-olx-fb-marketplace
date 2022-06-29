@@ -13,5 +13,8 @@ const router = (0, _express.Router)();
 const scrapController = new _SendPageController.SendPageController();
 router.post("/facebook", scrapController.scrapFacebook);
 router.post("/olx", scrapController.scrapOlx);
+router.get("/jair", (req, res) => {
+  return res.json("oi");
+});
 var _default = router;
 exports.default = _default;
