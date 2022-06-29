@@ -7,16 +7,6 @@ export class ScrapOlxService {
 
     public async execute(product: string, minPrice: string, maxPrice: string, pages: string): Promise<any[]> {
 
-        const cluster = await Cluster.launch({
-            concurrency: Cluster.CONCURRENCY_PAGE,
-            maxConcurrency: 100,
-            puppeteerOptions: {
-                headless: true,
-                args: ['--no-sandbox'],
-                timeout: 0
-            }
-        })
-
         let url = "https://ce.olx.com.br/autos-e-pecas/motos?o=PAGE_NUMBER&pe=MAX_PRICE&ps=MIN_PRICE&q=PRODUCT_TEMPLATE".replace("PRODUCT_TEMPLATE", product).replace("MIN_PRICE", minPrice).replace("MAX_PRICE", maxPrice).replace(/( )/gm, "%20").replace("PAGE_NUMBER", "1")
 
         let eachProductLink = "div.sc-12rk7z2-0.bDLpyo > a";
@@ -46,7 +36,7 @@ export class ScrapOlxService {
         let counter = 0;
         console.log("Número de links: " + links.length);
 
-        cluster.task(async ({ page, data: link }) => {
+        async function getProductDatas(link: string) {
 
             let html = await (await axios.get(link)).data;
             let cheerioProduct = cheerio.load(html);
@@ -68,14 +58,11 @@ export class ScrapOlxService {
             }
 
             products.push([productTitle, productPrice, productContact, link]);
-        })
-
-        for (var i = 0; i < links.length; i++) {
-            cluster.queue(links[i])
         }
 
-        await cluster.idle();
-        await cluster.close();
+        for (var i = 0; i < links.length; i++) {
+            await getProductDatas(links[i])
+        }
 
         return products;
     }
