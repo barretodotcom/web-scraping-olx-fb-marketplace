@@ -16,8 +16,7 @@ class SendPageController {
       product,
       minPrice,
       maxPrice,
-      daysSinceListed,
-      pages
+      daysSinceListed
     } = request.body;
     const scrappedPage = await scrapFacebook.execute(product, minPrice, maxPrice, daysSinceListed);
     return response.json(scrappedPage);

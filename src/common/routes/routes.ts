@@ -4,6 +4,6 @@ import scrapRouter from './scrapRouter';
 
 const routes = express.Router();
 
-routes.use("/scrap", scrapRouter)
+routes.use(scrapRouter)
 
 export default routes;

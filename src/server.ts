@@ -4,11 +4,13 @@ import routes from './common/routes/routes'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 
-let port = process.env.PORT || 3000
+let port = process.env.PORT || 3333
+
+app.use(cors())
 
 app.use(express.json());
 
-app.use("/", routes);
+app.use(routes);
 
 app.listen(port, () => {
     console.log("Aplicação rodando na porta " + port)

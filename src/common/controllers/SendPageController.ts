@@ -9,7 +9,7 @@ export class SendPageController {
 
         const scrapFacebook = new ScrapFacebookService();
 
-        const { product, minPrice, maxPrice, daysSinceListed, pages } = request.body
+        const { product, minPrice, maxPrice, daysSinceListed } = request.body
 
         const scrappedPage = await scrapFacebook.execute(product, minPrice, maxPrice, daysSinceListed);
 

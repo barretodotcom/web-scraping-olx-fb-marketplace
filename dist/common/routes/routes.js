@@ -13,6 +13,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const routes = _express.default.Router();
 
-routes.use("/scrap", _scrapRouter.default);
+routes.use(_scrapRouter.default);
 var _default = routes;
 exports.default = _default;
