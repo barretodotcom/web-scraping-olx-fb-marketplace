@@ -9,7 +9,7 @@ export class ScrapOlxService {
 
         const cluster = await Cluster.launch({
             concurrency: Cluster.CONCURRENCY_PAGE,
-            maxConcurrency: 400,
+            maxConcurrency: 100,
             puppeteerOptions: {
                 headless: true,
                 args: ['--no-sandbox'],
@@ -45,7 +45,6 @@ export class ScrapOlxService {
             })
 
         }
-        console.log(links)
         let products: any[] = [];
         let counter = 0;
         console.log("Número de links: " + links.length);
@@ -65,6 +64,7 @@ export class ScrapOlxService {
 
                 productContact = JSON.parse(cheerioProduct("#initial-data").attr("data-json")).ad.body.split(" ").filter(element => {
                     if (element.includes("98") || element.includes("88") || element.includes("99")) {
+                        console.log(element)
                         return element
                     }
                 })
