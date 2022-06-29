@@ -21,12 +21,10 @@ export class ScrapFacebookService {
         const pagePup = await browser.newPage();
 
         await pagePup.goto(url, {
-            waitUntil: "networkidle2",
             timeout: 0
         });
 
         await pagePup.waitForSelector("div.kbiprv82");
-        await pagePup.waitForTimeout(10000);
         await pagePup.waitForSelector(eachProductLink);
         let links = await pagePup.$$eval("div.kbiprv82 > a", element => element.map(link => { return link.href }))
 
